@@ -30,10 +30,10 @@ describe('test integration API /file', () => {
     });
   });
   
-  describe('/GET :nameFile', () => {
+  describe('/GET /data?fileName=nameFile', () => {
     it('it should GET detail file by nameFile - Extra', (done) => {
       chai.request(server)
-          .get('/api/files/test2.csv')
+          .get('/api/files/data?fileName=test2.csv')
           .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -42,10 +42,10 @@ describe('test integration API /file', () => {
     });
   });
 
-  describe('/GET :nameFile', () => {
+  describe('/GET /data?fileName=nameFile', () => {
     it('it should GET detail file by nameFile not exist - Extra', (done) => {
       chai.request(server)
-          .get('/api/files/test22.csv')
+          .get('/api/files/data?fileName=test22.csv')
           .end((err, res) => {
                 res.should.have.status(404);
             done();
