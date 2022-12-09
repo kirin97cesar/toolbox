@@ -129,11 +129,11 @@ La prueba consta del desarrollo de una API (BACKEND) y una Web (FRONTEND)
 # 3. DESPLIEGUE COMPLETO 
 - Para desplegar ambos servicios tanto el backend + frontend, bastara con tener instalado __Docker-compose__
 - Ir a la carpeta raiz del proyecto en donde se aprecia el archivo __docker-compose.yml__ y ejecutar lo siguiente:
-- Para construir la imagen
+- Para construir las imagenes
     ```
-     docker-compose run build
+     docker-compose build
     ```
-- Para desplegar
+- Para desplegar los contenedores
     ```
      docker-compose up
     ```
