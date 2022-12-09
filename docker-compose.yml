@@ -1,0 +1,11 @@
+version: '3'
+services:
+  backend-toolbox:
+    build: ./api
+    ports:
+      - "4000:4000"
+  front-toolbox:
+    build: ./front
+    ports:
+      - "8080:8080"
+    

@@ -1,0 +1,163 @@
+openapi: 3.0.0
+info:
+  title: TOOLBOX
+  description: Documentación API TOOLBOX TEST
+  version: 1.0.0
+  contact:
+  name: PAULO CESAR CARBAJAL JIMENEZ
+  email: carbajaljimenezpaulocesar@gmail.com
+servers:
+  - url: http://localhost:4000
+    description: LOCAL
+paths:
+  /api/files:
+    get:
+      tags:
+        - files
+      summary: GET ALL FILES WITH DETAIL
+      description:   Metodo para obtener el listado de archivos con su contenido detallado.
+      responses:
+        '200':
+          description: messageful response
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resFilesAll"
+        '500':
+          description: Error response
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resErrorAPI"
+  /api/files/list:
+    get:
+      tags:
+        - files
+      summary: GET FILES
+      responses:
+        '200':
+          description: messageful response
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resListFile"
+        '500':
+          description: Error response
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resErrorAPI"
+  /api/files/data?fileName={fileName}:
+    get:
+      parameters:
+          - in: path
+            name: fileName
+            required: true
+            schema:
+              type: string
+              minimum: 1
+            description: name File
+      tags:
+        - files
+      summary: DETAIL BY NAME FILE
+      responses:
+        '200':
+          description: messageful response
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resFileByName"
+        '404':
+          description: Not found file
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resNotFoundFile"
+  /api/files-demo:
+    get:
+      tags:
+        - files
+      summary: NOT FOUND
+      responses:
+        '404':
+          description: Not found
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/resNotFound"
+components:
+  schemas:
+    resNotFound:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Endpoint not found
+          
+    resNotFoundFile:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Not found file
+          
+    resErrorAPI:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error API
+          
+    resFileByName:
+      type: object
+      properties:
+        file:
+          type: string
+          example: test9.csv
+        line:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                example: AEeahwfizaLCRXZvYbtekQnjOwU
+              number:
+                type: string
+                example: 8
+              hex:
+                type: string
+                example: cf484fe482104724e3460b8b20b7b8be
+    
+    resFilesAll:
+      type: array
+      items:
+        type: object
+        properties:
+          file:
+            type: string
+            example: test9.csv
+          line:
+            type: array
+            items:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: AEeahwfizaLCRXZvYbtekQnjOwU
+                number:
+                  type: string
+                  example: 8
+                hex:
+                  type: string
+                  example: cf484fe482104724e3460b8b20b7b8be
+    
+    resListFile:           
+      type: object
+      properties:
+        file:
+          type: array
+          items:
+              type: string
+              example: test1.csv
+           
